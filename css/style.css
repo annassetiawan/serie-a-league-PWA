@@ -1,0 +1,229 @@
+html {
+  background-color: #34366a;
+}
+
+html,
+body {
+  min-width: 100%;
+  height: 100%;
+}
+
+header {
+  background-color: #f2f2f2;
+}
+
+main {
+  background-color: #34366a;
+  position: relative;
+}
+
+nav {
+  background-color: #f2f2f2;
+}
+
+ul li a {
+  color: #000000;
+}
+
+.image-bg {
+  position: absolute;
+  line-height: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.image-hero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  top: 140px;
+}
+
+.image-list .categories-wrapper {
+  background-color: #fff;
+  max-width: 100%;
+  height: 48px;
+  position: relative;
+}
+
+table {
+  font-size: 12px;
+  background-color: #34366a;
+}
+
+.logo {
+  position: relative;
+  width: 1rem;
+  margin-right: 10px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.row .col {
+  padding: 15px 0;
+}
+
+.content {
+  position: relative;
+  top: 10rem;
+}
+
+.schedules {
+  display: flex;
+  align-items: flex-start;
+}
+
+.logo-matches {
+  width: 1.5rem;
+  position: absolute;
+  left: 20px;
+}
+
+.collection {
+  border: 0;
+}
+.collection-item {
+  border-radius: 10px;
+}
+
+.match-divider {
+  background: #34366a !important;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+  position: relative;
+  padding-left: 20px !important;
+}
+
+.matchday {
+  font-size: 14px;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+.loader {
+  border: 3px solid #f2f2f2;
+  border-radius: 50%;
+  border-top: 3px solid #34366a;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.team-logo {
+  width: 20px;
+}
+
+.teams {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-items: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.teams-content {
+  display: flex;
+  justify-content: center;
+}
+
+.clubs {
+  margin-left: 10px;
+  width: 87px;
+  height: 110px;
+  border-radius: 10px;
+  background-color: #F2F7F9;
+}
+
+.circle-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #D1D4FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  display: flex;
+  border-radius: inherit;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: inherit;
+  height: inherit;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+button:focus {
+  outline: none;
+  background-color: #ff6e2f;
+}
+
+.shortname {
+  font-size: 10px;
+  text-align: center;
+}
+
+.favourite-btn{
+  cursor: pointer;
+}
+
+@media screen and (max-width: 640px) {
+  .matchday {
+    font-size: 7px;
+  }
+
+  .match-divider {
+    padding: 0 !important;
+  }
+
+  .collection .collection-item.avatar .title {
+    font-size: 10px;
+  }
+
+  .image-hero {
+    top: 50px;
+  }
+
+  .content {
+    top: 5rem;
+  }
+  .brand-logo {
+    font-size: 1.5rem !important;
+  }
+
+  .team-name{
+    font-size: 0.5rem;
+  }
+}
