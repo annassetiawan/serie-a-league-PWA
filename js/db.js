@@ -2,9 +2,6 @@ const dbPromised = idb.open("football-app", 1, function(upgradeDb) {
     const clubsObjectStore = upgradeDb.createObjectStore("clubs", {keyPath: "id",autoIncrement:true});
   });
 
-  
-
-  
   function getAll() {
     return new Promise(function(resolve, reject) {
       dbPromised

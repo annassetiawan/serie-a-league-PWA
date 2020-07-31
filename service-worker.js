@@ -1,4 +1,4 @@
-const CACHE_NAME = "seriea-app-v3";
+const CACHE_NAME = "seriea-app-v4";
 var urlsToCache = [
   "/",
   "/nav.html",
@@ -19,18 +19,16 @@ var urlsToCache = [
   "/js/api.js",
   "/assets/football2.svg",
   "/assets/seriea.svg",
-  "/assets/android-icon-192x192-dunplab-manifest-6626.png",
-  "/assets/apple-icon-57x57-dunplab-manifest-6626.png",
-  "/assets/apple-icon-60x60-dunplab-manifest-6626.png",
-  "/assets/apple-icon-72x72-dunplab-manifest-6626.png",
-  "/assets/apple-icon-114x114-dunplab-manifest-6626.png",
-  "/assets/apple-icon-120x120-dunplab-manifest-6626.png",
-  "/assets/apple-icon-144x144-dunplab-manifest-6626.png",
-  "/assets/apple-icon-152x152-dunplab-manifest-6626.png",
-  "/assets/apple-icon-180x180-dunplab-manifest-6626.png",
+  "/assets/icon-72x72.png",
+  "/assets/icon-96x96.png",
+  "/assets/icon-128x128.png",
+  "/assets/icon-144x144.png",
+  "/assets/icon-152x152.png",
+  "/assets/icon-192x192.png",
+  "/assets/icon-384x384.png",
+  "/assets/icon-512x512.png",
   "/assets/favicon-16x16-dunplab-manifest-6626.png",
-  "/assets/favicon-32x32-dunplab-manifest-6626.png",
-  "/assets/favicon-96x96-dunplab-manifest-6626.png",
+ 
 ];
  
 self.addEventListener("install", function(event) {

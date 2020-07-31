@@ -1,5 +1,16 @@
 let baseurl = "https://api.football-data.org/";
 
+const fetchApi = function(baseurl) {    
+
+  return fetch(baseurl , {
+    headers: {
+      "X-Auth-Token": "729550ea91894805999f2551839c1914",
+    },
+  })
+    
+
+};
+
 function getStandings() {
   if ("caches" in window) {
     caches
@@ -13,15 +24,12 @@ function getStandings() {
         }
       });
   }
-  fetch(baseurl + `v2/competitions/2019/standings`, {
-    headers: {
-      "X-Auth-Token": "729550ea91894805999f2551839c1914",
-    },
-  })
-    .then((response) => response.json())
+
+  fetchApi(baseurl + `v2/competitions/2019/standings`).then((response) => response.json())
     .then((data) => {
       showStanding(data);
     });
+  
 }
 
 function showStanding(data) {
@@ -83,11 +91,7 @@ function getSchedules() {
       });
   }
 
-  fetch(baseurl + `v2/competitions/2019/matches?status=SCHEDULED`, {
-    headers: {
-      "X-Auth-Token": "729550ea91894805999f2551839c1914",
-    },
-  })
+  fetchApi(baseurl + `v2/competitions/2019/matches?status=SCHEDULED`)
     .then((response) => {
       return response.json();
     })
@@ -213,11 +217,7 @@ function getTeams() {
         });
     }
 
-    fetch(baseurl + `v2/competitions/2019/teams`, {
-      headers: {
-        "X-Auth-Token": "729550ea91894805999f2551839c1914",
-      },
-    })
+    fetchApi(baseurl + `v2/competitions/2019/teams`)
       .then((response) => {
         return response.json();
       })
@@ -294,11 +294,7 @@ function getSchedulesById(e) {
   document.querySelector(".away").innerHTML = awayHtml;
   document.querySelector(".favourite").innerHTML = saveHtml;
 
-  fetch(baseurl + `v2/teams/${id}/matches?status=SCHEDULED`, {
-    headers: {
-      "X-Auth-Token": "729550ea91894805999f2551839c1914",
-    },
-  })
+  fetchApi(baseurl + `v2/teams/${id}/matches?status=SCHEDULED`)
     .then((response) => {
       return response.json();
     })
@@ -382,11 +378,7 @@ function getTeamsById(clubId) {
       });
     }
 
-    fetch(baseurl + `v2/teams/${clubId}`, {
-      headers: {
-        "X-Auth-Token": "729550ea91894805999f2551839c1914",
-      },
-    })
+    fetchApi(baseurl + `v2/teams/${clubId}`)
       .then((response) => {
         return response.json();
       })
