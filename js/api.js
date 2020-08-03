@@ -131,9 +131,9 @@ function showAwayTeam(responseJson, schedule) {
     }));
 
   const awayteam = mergedAwayTeam(matchesawayteam, teams);
-
+  
   let awayHtml = "";
-
+  
   awayteam.map((e) => {
     awayHtml += `
           <ul class="collection">
@@ -154,8 +154,7 @@ function showMatches(schedule) {
   const matches = schedule.matches;
 
   let matchesHtml = "";
-
-  matches.map((e) => {
+ matches.length ? ( matches.map((e) => {
     matchesHtml += `
     <ul class="collection">
     <li class="collection-item avatar match-divider">
@@ -167,9 +166,10 @@ function showMatches(schedule) {
     
 
       
-  `;
+  `})) : (matchesHtml += `No Upcoming Match`)
+ 
     document.querySelector(".matches").innerHTML = matchesHtml;
-  });
+  
 }
 function showHomeTeam(responseJson, schedule) {
   const teams = responseJson.teams;
@@ -187,7 +187,7 @@ function showHomeTeam(responseJson, schedule) {
   const hometeam = mergedHomeTeam(matcheshometeam, teams);
 
   let homeHtml = "";
-
+  
   hometeam.map((e) => {
     homeHtml += `
       <ul class="collection">
