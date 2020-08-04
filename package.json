@@ -2,8 +2,9 @@
   "name": "footballsubmission",
   "version": "1.0.0",
   "description": "",
-  "main": "scipt.js",
+  "main": "db.js",
   "dependencies": {
+    "idb": "^5.0.4",
     "web-push": "^3.4.4"
   },
   "devDependencies": {},
