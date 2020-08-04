@@ -1,3 +1,7 @@
+import { getAll } from "./db.js";
+
+let schedule;
+
 let baseurl = "https://api.football-data.org/";
 
 const fetchApi = function(baseurl) {    
@@ -11,7 +15,7 @@ const fetchApi = function(baseurl) {
 
 };
 
-function getStandings() {
+export function getStandings() {
   if ("caches" in window) {
     caches
       .match(baseurl + `v2/competitions/2019/standings`)
@@ -62,7 +66,7 @@ function showStanding(data) {
   document.querySelector(".standings").innerHTML = standingHTML;
 }
 
-function getSchedules() {
+export function getSchedules() {
   if ("caches" in window) {
     caches
       .match(baseurl + `v2/competitions/2019/matches?status=SCHEDULED`)
@@ -91,12 +95,15 @@ function getSchedules() {
       });
   }
 
+  
+
   fetchApi(baseurl + `v2/competitions/2019/matches?status=SCHEDULED`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
       // Store the post data to a variable
+     
       schedule = data;
 
       // Fetch another API
@@ -202,7 +209,7 @@ function showHomeTeam(responseJson, schedule) {
   });
 }
 
-function getTeams() {
+export function getTeams() {
   return new Promise(function (resolve, reject) {
     if ("caches" in window) {
       caches
@@ -250,7 +257,7 @@ function showTeams(data) {
   document.querySelector(".teams").innerHTML = teamsHTML;
 }
 
-function getSchedulesById(e) {
+export function getSchedulesById(e) {
   if ("caches" in window) {
     const button = e.target.closest("button");
     const id = button.dataset.id;
@@ -337,7 +344,7 @@ function showAddToFavourites(button){
       }
 }
 
-function getSavedClubs() {
+export function getSavedClubs() {
   getAll().then(function (clubs) {
     // Menyusun komponen card artikel secara dinamis
 
@@ -366,7 +373,7 @@ function getSavedClubs() {
   });
 }
 
-function getTeamsById(clubId) {
+export function getTeamsById(clubId) {
   return new Promise(function (resolve, reject) {
     if ("caches" in window) {
       caches.match(baseurl + `v2/teams/${clubId}`).then(function (response) {

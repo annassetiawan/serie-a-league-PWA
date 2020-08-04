@@ -1,3 +1,6 @@
+import { getSchedulesById,getTeamsById,getSavedClubs } from "./api.js";
+import { dbDeleteClub,dbInsertClub } from "./db.js";
+
 if (!('serviceWorker' in navigator)) {
   console.log("Service worker tidak didukung browser ini.");
 } else {

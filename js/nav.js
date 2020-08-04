@@ -1,3 +1,5 @@
+import { getStandings,getSchedules,getTeams,getSavedClubs } from "./api.js";
+
 document.addEventListener("DOMContentLoaded", function() {
   // Activate sidebar nav
   const elems = document.querySelectorAll(".sidenav");
