@@ -34,7 +34,8 @@ module.exports = {
    plugins: [
        new HtmlWebpackPlugin({
            template: "./src/index.html",
-           filename: "index.html"
+           filename: "index.html",
+           favicon: "./src/assets/favicon-16x16-dunplab-manifest-6626.png"
        }),
        new HtmlWebpackPlugin({  
         filename: 'nav.html',
