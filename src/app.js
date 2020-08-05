@@ -1,5 +1,4 @@
 import "../css/style.css";
-import "../css/materialize.min.css";
 import './js/api.js';
 import './js/db.js';
 import './js/nav.js';
