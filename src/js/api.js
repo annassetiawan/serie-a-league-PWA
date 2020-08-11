@@ -16,18 +16,6 @@ const fetchApi = function(baseurl) {
 };
 
 export function getStandings() {
-  if ("caches" in window) {
-    caches
-      .match(baseurl + `v2/competitions/2019/standings`)
-      .then(function (response) {
-        if (response) {
-          response.json().then(function (data) {
-            console.log("Competition Data: " + data);
-            showStanding(data);
-          });
-        }
-      });
-  }
 
   fetchApi(baseurl + `v2/competitions/2019/standings`).then((response) => response.json())
     .then((data) => {
@@ -67,35 +55,6 @@ function showStanding(data) {
 }
 
 export function getSchedules() {
-  if ("caches" in window) {
-    caches
-      .match(baseurl + `v2/competitions/2019/matches?status=SCHEDULED`)
-      .then((response) => {
-        if (response) {
-          response
-            .json()
-            .then(function (data) {
-              schedule = data;
-
-              return caches.match(baseurl + `v2/competitions/2019/teams`, {
-                headers: {
-                  "X-Auth-Token": "729550ea91894805999f2551839c1914",
-                },
-              });
-            })
-            .then((response) => {
-              return response.json();
-            })
-            .then((responseJson) => {
-              showHomeTeam(responseJson, schedule);
-              showAwayTeam(responseJson, schedule);
-              showMatches(schedule);
-            });
-        }
-      });
-  }
-
-  
 
   fetchApi(baseurl + `v2/competitions/2019/matches?status=SCHEDULED`)
     .then((response) => {
@@ -211,18 +170,7 @@ function showHomeTeam(responseJson, schedule) {
 
 export function getTeams() {
   return new Promise(function (resolve, reject) {
-    if ("caches" in window) {
-      caches
-        .match(baseurl + `v2/competitions/2019/teams`)
-        .then(function (response) {
-          if (response) {
-            response.json().then(function (data) {
-              showTeams(data);
-              resolve(data.teams);
-            });
-          }
-        });
-    }
+   
 
     fetchApi(baseurl + `v2/competitions/2019/teams`)
       .then((response) => {
@@ -258,36 +206,7 @@ function showTeams(data) {
 }
 
 export function getSchedulesById(e) {
-  if ("caches" in window) {
-    const button = e.target.closest("button");
-    const id = button.dataset.id;
-    caches
-      .match(baseurl + `v2/teams/${id}/matches?status=SCHEDULED`)
-      .then((response) => {
-        if (response) {
-          response
-            .json()
-            .then(function (data) {
-              schedule = data;
-
-              return caches.match(baseurl + `v2/competitions/2019/teams`, {
-                headers: {
-                  "X-Auth-Token": "729550ea91894805999f2551839c1914",
-                },
-              });
-            })
-            .then((response) => {
-              return response.json();
-            })
-            .then((responseJson) => {
-              showHomeTeam(responseJson, schedule);
-              showAwayTeam(responseJson, schedule);
-              showMatches(schedule);
-              showAddToFavourites(button)
-            });
-        }
-      });
-  }
+ 
   const button = e.target.closest("button");
   const id = button.dataset.id;
   let matchesHtml = `<div class="flex-center">
@@ -375,15 +294,7 @@ export function getSavedClubs() {
 
 export function getTeamsById(clubId) {
   return new Promise(function (resolve, reject) {
-    if ("caches" in window) {
-      caches.match(baseurl + `v2/teams/${clubId}`).then(function (response) {
-        if (response) {
-          response.json().then(function (data) {
-            resolve(data);
-          });
-        }
-      });
-    }
+    
 
     fetchApi(baseurl + `v2/teams/${clubId}`)
       .then((response) => {
