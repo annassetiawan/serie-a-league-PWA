@@ -1,3 +1,6 @@
+import { getSchedulesById,getTeamsById,getSavedClubs } from "./api.js";
+import { dbDeleteClub,dbInsertClub } from "./db.js";
+
 if (!('serviceWorker' in navigator)) {
   console.log("Service worker tidak didukung browser ini.");
 } else {
@@ -35,7 +38,8 @@ function requestPermission() {
   }
 }
 
-if ("PushManager" in window) {
+navigator.serviceWorker.ready.then(() =>{
+  if ("PushManager" in window) {
   navigator.serviceWorker.getRegistration().then(function (registration) {
     registration.pushManager
       .subscribe({
@@ -73,6 +77,8 @@ if ("PushManager" in window) {
       });
   });
 }
+})
+
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);

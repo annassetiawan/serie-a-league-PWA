@@ -1,8 +1,10 @@
+import idb from "./idb.js"
+
 const dbPromised = idb.open("football-app", 1, function(upgradeDb) {
     const clubsObjectStore = upgradeDb.createObjectStore("clubs", {keyPath: "id",autoIncrement:true});
   });
 
-  function getAll() {
+  export function getAll() {
     return new Promise(function(resolve, reject) {
       dbPromised
         .then(function(db) {
@@ -16,7 +18,7 @@ const dbPromised = idb.open("football-app", 1, function(upgradeDb) {
     });
   }
 
-  const dbInsertClub = club => {
+  export const dbInsertClub = club => {
     return new Promise((resolve, reject) => {
       dbPromised.then(db => {
             const transaction = db.transaction("clubs", `readwrite`);
@@ -33,7 +35,7 @@ const dbPromised = idb.open("football-app", 1, function(upgradeDb) {
     })
 };
 
-const dbDeleteClub = clubId => {
+export const dbDeleteClub = clubId => {
   return new Promise((resolve, reject) => {
     dbPromised.then(db => {
           const transaction = db.transaction("clubs", `readwrite`);

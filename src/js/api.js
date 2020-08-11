@@ -1,3 +1,7 @@
+import { getAll } from "./db.js";
+
+let schedule;
+
 let baseurl = "https://api.football-data.org/";
 
 const fetchApi = function(baseurl) {    
@@ -11,19 +15,7 @@ const fetchApi = function(baseurl) {
 
 };
 
-function getStandings() {
-  if ("caches" in window) {
-    caches
-      .match(baseurl + `v2/competitions/2019/standings`)
-      .then(function (response) {
-        if (response) {
-          response.json().then(function (data) {
-            console.log("Competition Data: " + data);
-            showStanding(data);
-          });
-        }
-      });
-  }
+export function getStandings() {
 
   fetchApi(baseurl + `v2/competitions/2019/standings`).then((response) => response.json())
     .then((data) => {
@@ -62,34 +54,7 @@ function showStanding(data) {
   document.querySelector(".standings").innerHTML = standingHTML;
 }
 
-function getSchedules() {
-  if ("caches" in window) {
-    caches
-      .match(baseurl + `v2/competitions/2019/matches?status=SCHEDULED`)
-      .then((response) => {
-        if (response) {
-          response
-            .json()
-            .then(function (data) {
-              schedule = data;
-
-              return caches.match(baseurl + `v2/competitions/2019/teams`, {
-                headers: {
-                  "X-Auth-Token": "729550ea91894805999f2551839c1914",
-                },
-              });
-            })
-            .then((response) => {
-              return response.json();
-            })
-            .then((responseJson) => {
-              showHomeTeam(responseJson, schedule);
-              showAwayTeam(responseJson, schedule);
-              showMatches(schedule);
-            });
-        }
-      });
-  }
+export function getSchedules() {
 
   fetchApi(baseurl + `v2/competitions/2019/matches?status=SCHEDULED`)
     .then((response) => {
@@ -97,6 +62,7 @@ function getSchedules() {
     })
     .then((data) => {
       // Store the post data to a variable
+     
       schedule = data;
 
       // Fetch another API
@@ -202,20 +168,9 @@ function showHomeTeam(responseJson, schedule) {
   });
 }
 
-function getTeams() {
+export function getTeams() {
   return new Promise(function (resolve, reject) {
-    if ("caches" in window) {
-      caches
-        .match(baseurl + `v2/competitions/2019/teams`)
-        .then(function (response) {
-          if (response) {
-            response.json().then(function (data) {
-              showTeams(data);
-              resolve(data.teams);
-            });
-          }
-        });
-    }
+   
 
     fetchApi(baseurl + `v2/competitions/2019/teams`)
       .then((response) => {
@@ -250,37 +205,8 @@ function showTeams(data) {
   document.querySelector(".teams").innerHTML = teamsHTML;
 }
 
-function getSchedulesById(e) {
-  if ("caches" in window) {
-    const button = e.target.closest("button");
-    const id = button.dataset.id;
-    caches
-      .match(baseurl + `v2/teams/${id}/matches?status=SCHEDULED`)
-      .then((response) => {
-        if (response) {
-          response
-            .json()
-            .then(function (data) {
-              schedule = data;
-
-              return caches.match(baseurl + `v2/competitions/2019/teams`, {
-                headers: {
-                  "X-Auth-Token": "729550ea91894805999f2551839c1914",
-                },
-              });
-            })
-            .then((response) => {
-              return response.json();
-            })
-            .then((responseJson) => {
-              showHomeTeam(responseJson, schedule);
-              showAwayTeam(responseJson, schedule);
-              showMatches(schedule);
-              showAddToFavourites(button)
-            });
-        }
-      });
-  }
+export function getSchedulesById(e) {
+ 
   const button = e.target.closest("button");
   const id = button.dataset.id;
   let matchesHtml = `<div class="flex-center">
@@ -337,7 +263,7 @@ function showAddToFavourites(button){
       }
 }
 
-function getSavedClubs() {
+export function getSavedClubs() {
   getAll().then(function (clubs) {
     // Menyusun komponen card artikel secara dinamis
 
@@ -366,17 +292,9 @@ function getSavedClubs() {
   });
 }
 
-function getTeamsById(clubId) {
+export function getTeamsById(clubId) {
   return new Promise(function (resolve, reject) {
-    if ("caches" in window) {
-      caches.match(baseurl + `v2/teams/${clubId}`).then(function (response) {
-        if (response) {
-          response.json().then(function (data) {
-            resolve(data);
-          });
-        }
-      });
-    }
+    
 
     fetchApi(baseurl + `v2/teams/${clubId}`)
       .then((response) => {

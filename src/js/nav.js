@@ -1,10 +1,13 @@
+import { getStandings,getSchedules,getTeams,getSavedClubs } from "./api.js";
+import M from './materialize.min.js'
+
 document.addEventListener("DOMContentLoaded", function() {
   // Activate sidebar nav
   const elems = document.querySelectorAll(".sidenav");
   M.Sidenav.init(elems);
-  loadNav();
+  
 
-  function loadNav() {
+ const  loadNav = () => {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState === 4) {
@@ -34,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function() {
     xhttp.open("GET", "nav.html", true);
     xhttp.send();
   }
+
+  loadNav()
 
   // Load page content
   let page = window.location.hash.substr(1);
@@ -70,3 +75,4 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
 });
+
